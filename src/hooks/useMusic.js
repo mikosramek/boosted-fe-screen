@@ -1,10 +1,17 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 import { songs } from "../data/songlist.json";
 
 export const useMusic = () => {
   const [songIndex, setSongIndex] = useState(0);
   const [elapsed, setElapsed] = useState(0);
+
+  const songList = useMemo(() => {
+    return songs.map(({ title, artist }) => ({
+      title,
+      artist,
+    }));
+  }, [songs]);
 
   const currentSong = { ...songs[songIndex], elapsed };
 
@@ -20,5 +27,6 @@ export const useMusic = () => {
 
   return {
     currentSong,
+    songList,
   };
 };
