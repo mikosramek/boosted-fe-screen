@@ -1,10 +1,14 @@
+import { useMemo } from "react";
 import { StyleSheet, Text, View } from "react-native";
 
-export const Song = ({ song }) => {
-  console.log(song);
+export const Song = ({ song, active }) => {
+  const computedTitleStyles = useMemo(() => {
+    return [styles.title, { color: active ? "#9fd18b" : "#000" }];
+  }, [active]);
+
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>{song.title}</Text>
+      <Text style={computedTitleStyles}>{song.title}</Text>
       <Text style={styles.artist}>{song.artist}</Text>
     </View>
   );

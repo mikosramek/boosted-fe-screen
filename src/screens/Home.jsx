@@ -5,16 +5,20 @@ import { Controls } from "~/components/Controls";
 import { SongList } from "~/components/SongList";
 
 export const Home = () => {
-  const { currentSong, songList } = useMusic();
+  const { currentSong, songIndex, songCopy, controls, status } = useMusic();
 
   return (
     <View style={styles.container}>
       <View style={styles.songListContainer}>
-        <SongList songs={songList} />
+        <SongList
+          songs={songCopy}
+          playSong={controls.playSong}
+          songIndex={songIndex}
+        />
       </View>
       <View style={styles.footerContainer}>
         <Player song={currentSong} />
-        <Controls />
+        <Controls controls={controls} status={status} />
       </View>
     </View>
   );

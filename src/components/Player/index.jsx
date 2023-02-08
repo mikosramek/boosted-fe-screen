@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { Animated, View, Text, StyleSheet } from "react-native";
 import { Dimensions } from "react-native";
 
 export const Player = ({ song }) => {
@@ -9,7 +9,13 @@ export const Player = ({ song }) => {
     const progressPercent = song.elapsed / song.duration;
     return [
       styles.progressBarIndicator,
-      { transform: [{ translateX: progressPercent * (windowWidth - 37) }] },
+      {
+        transform: [
+          {
+            translateX: progressPercent * (windowWidth - 37),
+          },
+        ],
+      },
     ];
   }, [song, windowWidth]);
 
@@ -20,7 +26,7 @@ export const Player = ({ song }) => {
       </Text>
       <View style={styles.timeline}>
         <View style={styles.progressBarBacking}>
-          <View style={indicatorStylesComputed} />
+          <Animated.View style={indicatorStylesComputed} />
         </View>
         <View style={styles.durationContainer}>
           <Text>{song.elapsed}</Text>

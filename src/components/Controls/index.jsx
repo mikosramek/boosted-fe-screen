@@ -1,19 +1,41 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { Foundation } from "@expo/vector-icons";
 
-export const Controls = () => {
+export const Controls = ({ controls, status }) => {
   return (
     <View style={styles.controlsContainer}>
       <View style={styles.mainControlsContainer}>
-        <Foundation name="previous" size={28} color="#222" />
-        <View style={styles.playPauseButton}>
-          <Foundation name="play" size={32} color="#000" />
-        </View>
-        <Foundation name="next" size={28} color="#222" />
+        <TouchableOpacity onPress={controls.previousSong}>
+          <Foundation name="previous" size={28} color="#222" />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={controls.togglePlaying}>
+          <View style={styles.playPauseButton}>
+            <Foundation
+              name={status.isPlaying ? "pause" : "play"}
+              size={32}
+              color="#000"
+            />
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={controls.nextSong}>
+          <Foundation name="next" size={28} color="#222" />
+        </TouchableOpacity>
       </View>
       <View style={styles.subControlContainer}>
-        <Foundation name="shuffle" size={24} color="#666" />
-        <Foundation name="loop" size={24} color="#666" />
+        <TouchableOpacity onPress={controls.toggleShuffle}>
+          <Foundation
+            name="shuffle"
+            size={24}
+            color={status.isShuffled ? "#9fd18b" : "#666"}
+          />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={controls.toggleLooping}>
+          <Foundation
+            name="loop"
+            size={24}
+            color={status.isLooping ? "#9fd18b" : "#666"}
+          />
+        </TouchableOpacity>
       </View>
     </View>
   );
