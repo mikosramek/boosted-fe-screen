@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, StyleSheet, TouchableOpacity } from "react-native";
 import { Foundation } from "@expo/vector-icons";
 
 export const Controls = ({ controls, status }) => {
